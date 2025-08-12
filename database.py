@@ -93,3 +93,18 @@ async def get_user(user_id: int):
             return UserData(name=row['name'], email=row['email'], age=row['age'])
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.delete("/users/{user_id}")
+async def delete_user(user_id: int):
+    try:
+        with get_connection() as conn:
+            cursor = conn.cursor()
+            cursor.execute(
+                "delete FROM users WHERE id = ?",
+                (user_id,)
+            )
+            conn.commit()
+            return "User Deleted"
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
