@@ -6,11 +6,19 @@ from email.mime.multipart import MIMEMultipart
 from dotenv import load_dotenv
 import os
 from fastapi.staticfiles import StaticFiles
+from database import router as db_router
 
 # Load environment variables
 load_dotenv()
 
 app = FastAPI()
+app.include_router(db_router, tags=["database"])
+
+# Will try to deploy this server on on https://render.com as given by https://chatgpt.com/c/689b137e-49c8-8324-8d2d-f7d2bb675c5a
+# use https://dashboard.render.com/register to deploy the python app free
+
+# pip install -r requirements.txt
+# uvicorn main:app --reload --host 0.0.0.0 --port 8000
 
 # Mount the static directory
 app.mount("/static", StaticFiles(directory="static"), name="static")
