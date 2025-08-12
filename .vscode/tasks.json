@@ -1,0 +1,13 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "shell",
+      "label": "Run FastAPI server",
+      "command": "D:/yashkk3640/github/dashboard-mcp/.venv/Scripts/python.exe -m uvicorn main:app --reload --host 0.0.0.0 --port 8000",
+      "group": "build",
+      "isBackground": true,
+      "problemMatcher": []
+    }
+  ]
+}
